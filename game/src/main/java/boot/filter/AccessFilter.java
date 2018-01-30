@@ -44,8 +44,7 @@ public class AccessFilter implements Filter {
             }
         }
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        System.out.println("Всё упало, шеф!");
-        response.sendRedirect("http://localhost:8081/");
+        if (!response.isCommitted()) response.sendRedirect("http://localhost:8081/");
 
     }
 

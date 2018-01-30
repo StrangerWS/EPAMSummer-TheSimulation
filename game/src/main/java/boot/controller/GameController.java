@@ -29,7 +29,7 @@ public class GameController {
     }
 
     private Enemy createEnemy() {
-        return new Enemy(Type.values()[random.nextInt(Type.values().length - 1)], (byte) (random.nextInt(getCurrentPlayer().getLevel() + 3) - 1));
+        return new Enemy(Type.values()[random.nextInt(Type.values().length - 1)], (byte) (random.nextInt(getCurrentPlayer().getLevel() + 1) + 1));
     }
 
     private String gameOver(boolean isWin) {
@@ -73,31 +73,32 @@ public class GameController {
                     result.append(" and dealt ");
                     result.append(player.dealDamage());
                     result.append(" damage.\n");
-                    System.out.println(enemy.toString());
+                    System.out.println("Enemy is Dead:" + enemy.isDead());
                 } else result.append("You missed!\n");
             }
-            while (!enemy.isDead() || !player.isDead()) {
+            while (!enemy.isDead() == !player.isDead()) {
                 if (random.nextInt(100) < enemy.getAccuracy() || random.nextInt(100) < enemy.getLuck()) {
                     player.getDamage(enemy.dealDamage());
                     result.append(enemy.getType());
-                    result.append(" attacked you");
-                    result.append(" and dealt ");
-                    result.append(player.dealDamage());
+                    result.append(" attacked you and dealt ");
+                    result.append(enemy.dealDamage());
                     result.append(" damage.\n");
-                    System.out.println(player.toString());
+                    System.out.println("Player is Dead:" + player.isDead());
                 } else {
                     result.append(enemy.getType());
                     result.append(" is missed!\n");
                 }
-                if (random.nextInt(100) < player.getAccuracy() || random.nextInt(100) < player.getLuck()) {
-                    enemy.getDamage(player.dealDamage());
-                    result.append("You attacked ");
-                    result.append(enemy.getType());
-                    result.append(" and dealt ");
-                    result.append(player.dealDamage());
-                    result.append(" damage.\n");
-                    System.out.println(enemy.toString());
-                } else result.append("You missed!\n");
+                if (!player.isDead()) {
+                    if (random.nextInt(100) < player.getAccuracy() || random.nextInt(100) < player.getLuck()) {
+                        enemy.getDamage(player.dealDamage());
+                        result.append("You attacked ");
+                        result.append(enemy.getType());
+                        result.append(" and dealt ");
+                        result.append(player.dealDamage());
+                        result.append(" damage.\n");
+                        System.out.println("Enemy is Dead:" + enemy.isDead());
+                    } else result.append("You missed!\n");
+                }
             }
             if (enemy.isDead()) {
                 nextStep(player, result);

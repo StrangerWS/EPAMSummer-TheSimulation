@@ -1,9 +1,9 @@
 package boot.util;
 
 public enum Type {
-    Homeless(5, 1, 0, (byte) 50, (byte) 4, (byte) 30, new byte[]{0, 0, 0, 0, 0}),
-    Thug(7, 2, 0, (byte) 40, (byte) 4, (byte) 40, new byte[]{0, 0, 0, 0, 0}),
-    Nerd(3, 1, 0, (byte) 30, (byte) 4, (byte) 50, new byte[]{0, 0, 0, 0, 0}),
+    Homeless(5, 1, 0, (byte) 50, (byte) 4, (byte) 5, new byte[]{0, 0, 0, 0, 0}),
+    Thug(7, 2, 0, (byte) 40, (byte) 4, (byte) 5, new byte[]{0, 0, 0, 0, 0}),
+    Nerd(3, 1, 0, (byte) 30, (byte) 4, (byte) 15, new byte[]{0, 0, 0, 0, 0}),
     Player(5, 1, 0, (byte) 45, (byte) 4, (byte) 10, new byte[]{0, 0, 0, 0, 0});
 
     public float hp;
